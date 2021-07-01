@@ -1,0 +1,14 @@
+<div class="box-container" 
+    (mousemove)="onMouseMove($event)"
+    (mousedown)="onMouseDown($event)"
+    (mouseup)="onMouseUp($event)">
+
+    <app-shape 
+        *ngFor="let shape of shapes;" 
+        [start]="shape.start" 
+        [end]="shape.end">
+    </app-shape>
+
+</div>
+
+<app-panel></app-panel>
