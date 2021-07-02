@@ -1,3 +1,48 @@
 <div class="panel">
-    Panel works.
+    <div class="panel__actions">
+        <div class="panel__icon-wrapper" (click)="onErase()">
+            <svg class="panel__icon panel__icon--eraser">
+                <use xlink:href="assets/icons/icons.svg#icon-eraser"></use>
+            </svg>
+        </div>
+    </div>
+    <div class="panel__shapes">
+        
+        <div class="panel__icon-wrapper" (click)="changeShape(3)">
+            <svg class="panel__icon" [ngClass]="{'panel__icon-selected': shapeIndex == 3}">
+                <use xlink:href="assets/icons/icons.svg#icon-circle"></use>
+            </svg>
+        </div>
+
+        <div class="panel__icon-wrapper" (click)="changeShape(2)">
+            <svg class="panel__icon" [ngClass]="{'panel__icon-selected': shapeIndex == 2}">
+                <use xlink:href="assets/icons/icons.svg#icon-star-empty"></use>
+            </svg>
+        </div>
+
+        <div class="panel__icon-wrapper" (click)="changeShape(1)">
+            <svg class="panel__icon" [ngClass]="{'panel__icon-selected': shapeIndex == 1}">
+                <use xlink:href="assets/icons/icons.svg#icon-hexagon"></use>
+            </svg>
+        </div>
+
+        <div class="panel__icon-wrapper" (click)="changeShape(0)">
+            <svg class="panel__icon" [ngClass]="{'panel__icon-selected': shapeIndex == 0}">
+                <use xlink:href="assets/icons/icons.svg#icon-checkbox-unchecked"></use>
+            </svg>
+        </div>
+        
+    </div>
+    <div class="panel__colors" (click)="togglePicker()">
+        <div class="panel__icon-wrapper--alt" [ngClass]="'color--'+shapeColor">
+        </div>
+    </div>
+</div>
+
+<div class="color-picker" *ngIf="showColorPicker">
+    <div class="color-picker__item color--1" (click)="changeColor(1)"></div>
+    <div class="color-picker__item color--2" (click)="changeColor(2)"></div>
+    <div class="color-picker__item color--3" (click)="changeColor(3)"></div>
+    <div class="color-picker__item color--4" (click)="changeColor(4)"></div>
+    <div class="color-picker__item color--5" (click)="changeColor(5)"></div>
 </div>

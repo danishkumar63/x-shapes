@@ -11,6 +11,8 @@ export class ShapeComponent implements OnInit, OnChanges {
 
   @Input() start: Point;
   @Input() end: Point;
+  @Input() shapeType: number;
+  @Input() shapeColor: number = 1;
   nativeElement: HTMLElement;
 
   constructor(private element: ElementRef) {
@@ -25,13 +27,16 @@ export class ShapeComponent implements OnInit, OnChanges {
     this.end = {
       x: 0,
       y: 0
-    }
+    };
+
+    this.shapeType = 0;
 
   }
 
   ngOnInit(): void {
     
     this.nativeElement.classList.add('shape');
+    this.nativeElement.classList.add(this.getClassName());
     this.setCoordinates();
 
   }
@@ -43,8 +48,6 @@ export class ShapeComponent implements OnInit, OnChanges {
   }
 
   updateDimensions() {
-
-    
 
     const { x, y } = this.start;
     let left = Math.min(x, this.end.x);
@@ -66,6 +69,18 @@ export class ShapeComponent implements OnInit, OnChanges {
     this.nativeElement.style.left = `${x}px`;
     this.nativeElement.style.width = `${width}px`;
     this.nativeElement.style.height = `${height}px`;
+  }
+
+  getClassName(){
+    if (this.shapeType == 0){
+      return 'shape__square';
+    } else if (this.shapeType == 1){
+      return 'shape__hex';
+    } else if (this.shapeType == 2){
+      return 'shape__star';
+    } else {
+      return 'shape__circle';
+    }
   }
 
 }

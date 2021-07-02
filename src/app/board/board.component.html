@@ -1,14 +1,21 @@
 <div class="box-container" 
     (mousemove)="onMouseMove($event)"
     (mousedown)="onMouseDown($event)"
+    (mouseleave)="onMouseUp($event)"
     (mouseup)="onMouseUp($event)">
 
     <app-shape 
         *ngFor="let shape of shapes;" 
         [start]="shape.start" 
+        [shapeType]="shape.shapeType"
+        [shapeColor]="shape.shapeColor"
         [end]="shape.end">
     </app-shape>
 
 </div>
 
-<app-panel></app-panel>
+<app-panel 
+    (shapeChanged)="onShapeChanged($event)" 
+    (colorChanged)="onColorChanged($event)" 
+    (erase)="onErase()">
+</app-panel>

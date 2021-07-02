@@ -12,6 +12,8 @@ export class BoardComponent implements OnInit {
   shapes: Shape[] = [];
   drawStarted: boolean = false;
   currentIndex: number = 0;
+  currentShape: number = 0;
+  currentColor: number = 1;
 
   constructor() { }
 
@@ -47,12 +49,24 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  onErase() {
+    this.shapes = [];
+  }
+
+  onShapeChanged(index: number){
+    this.currentShape = index;
+  }
+
+  onColorChanged(color: number){
+    this.currentColor = color;
+  }
+
   addShape(start: Point, end: Point) {
     let shape = this.getShape(
       start.x,
       start.y,
       end.x,
-      end.y
+      end.y,
     );
     this.shapes.push(shape);
   }
@@ -66,7 +80,9 @@ export class BoardComponent implements OnInit {
       end: {
         x: x2,
         y: y2,
-      }
+      },
+      shapeType: this.currentShape,
+      shapeColor: this.currentColor,
     };
   }
 
